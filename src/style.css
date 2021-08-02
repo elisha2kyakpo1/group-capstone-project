@@ -13,8 +13,8 @@ body {
   flex-wrap: wrap;
 }
 
-.reserve-form,
-.comments-form {
+.popup-form {
+  display: none;
   position: absolute;
   top: 50px;
   left: 10%;
@@ -24,8 +24,13 @@ body {
   box-shadow: 2px 2px 5px black;
   background-color: #fff;
   padding: 10px 20px;
-  display: none;
   z-index: 500;
+}
+
+.close {
+  font-size: 3rem;
+  font-weight: 400;
+  color: black;
 }
 
 img {
