@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="style/text" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+  <title>capstone</title>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav d-flex mt-5">
+      <button type="button" class="btn">Fast foods</button>
+      <button type="button" class="btn">Take away</button>
+      <button type="button" class="btn">Drinks</button>
+    </nav>
+  </header>
+  <main>
+    <section class="content mt-5">
+      <div class="comments-form">
+        <a class="close" href="#">&times;</a>
+        <div class="d-flex inner-comments">
+          <form action="#" class="form d-flex">
+            <i class="far fa-heart"></i>
+            <input type="text" name="comment" class="mb-2 form-control" placeholder="name" required>
+            <textarea name="comment" id="" cols="30" rows="3" class="form-control" placeholder="comment...." required></textarea>
+            <input type="submit" value="save" class="btn btn-primary mt-2">
+          </form>
+        </div>
+      </div>
+
+      <div class="reserve-form" id="popup">
+        <a class="close" href="#">&times;</a>
+        <div class="d-flex inner-comments">
+          <form action="#" class="form d-flex">
+            <i class="far fa-heart"></i>
+            <input type="text" name="reserve" class="mb-2 form-control" placeholder="name" required>
+            <textarea name="comment" id="" cols="30" rows="3" class="form-control" placeholder="comment...." required></textarea>
+            <input type="submit" value="save" class="btn btn-primary mt-2">
+          </form>
+        </div>
+      </div>
+      <div class="content-cont d-flex">
+        <div class="container d-flex">
+          <div class="img1">
+            <img alt="cake" src=<%=require("./asset/cake1.jpg")%>/>
+            <div class="d-flex">
+              <h4>cone</h4>
+              <i class="fal fa-heart"></i>
+              <i class="far fa-thumbs-up"></i>
+              <i class="fas fa-heart"></i>
+            </div>
+            <div class="likes">
+              <p><span>4</span>likes</p>
+            </div>
+
+            <div class="comments-rsvp d-flex">
+              <button type="button" class="btn btn-primary mb-2 opinion">Comments</button>
+              <button type="button" class="btn btn-primary reserve">Resersations</button>
+            </div>
+          </div>
+          <div class="img1">
+            <img alt="cake" src=<%=require("./asset/cake2.jpg")%>/>
+            <div class="d-flex">
+              <h4>cone</h4>
+              <i class="far fa-heart"></i>
+            </div>
+            <div class="likes">
+              <p><span>4</span>likes</p>
+            </div>
+            <div class="comments-rsvp d-flex">
+              <button type="button" class="btn btn-primary mb-2 opinion">Comments</button>
+              <button type="button" class="btn btn-primary reserve">Resersations</button>
+            </div>
+          </div>
+          <div class="img1">
+            <img alt="cake" src=<%=require("./asset/cake3.jpg")%>/>
+            <div class="d-flex">
+              <h4>cone</h4>
+              <i class="far fa-heart"></i>
+            </div>
+            <div class="likes">
+              <p><span>4</span>likes</p>
+            </div>
+
+            <div class="comments-rsvp d-flex">
+              <button type="button" class="btn btn-primary mb-2 opinion">Comments</button>
+              <button type="button" class="btn btn-primary reserve">Resersations</button>
+            </div>
+          </div>
+          <div class="img1">
+            <img alt="cake" src=<%=require("./asset/cake4.jpg")%>/>
+            <div class="d-flex">
+              <h4>cone</h4>
+              <i class="far fa-heart"></i>
+            </div>
+            <div class="likes">
+              <p><span>4</span>likes</p>
+            </div>
+
+            <div class="comments-rsvp d-flex">
+              <button type="button" class="btn btn-primary mb-2 opinion">Comments</button>
+              <button type="button" class="btn btn-primary reserve">Resersations</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
