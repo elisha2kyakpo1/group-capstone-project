@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'TodoList',
+      title: 'capstone',
       template: './src/index.html',
     }),
   ],
@@ -21,7 +21,13 @@ module.exports = {
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 8192,
+          name:'[name].[ext]',
+          outputPath:'assets',
+        }
       },
     ],
   },
