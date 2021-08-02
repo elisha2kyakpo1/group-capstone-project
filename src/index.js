@@ -1,5 +1,4 @@
 import './style.css';
-require('webpack-icons-installer/font-awesome');
 
 const reserve = document.querySelector('.reserve-form');
 const comments = document.querySelector('.comments-form');
