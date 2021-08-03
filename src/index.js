@@ -1,5 +1,7 @@
 import './style.css';
-import { createApp, postComment, getMeals, getComments } from './api';
+import {
+  createApp, postComment, getMeals, getComments,
+} from './api';
 import { newApi } from './rapidApi';
 
 const popup = document.querySelector('.popup-form');
@@ -26,11 +28,11 @@ const comment = {
   item_id: 'itemId',
   username: user,
   comment: commentText,
-}
+};
 
 const sendComment = document.querySelector('.sub-comment');
 sendComment.addEventListener('click', () => {
-  console.log(comment)
+  console.log(comment);
   postComment(comment);
   res();
 });
@@ -43,7 +45,7 @@ closeBtn.addEventListener('click', () => {
 overlay.addEventListener('click', () => {
   popup.style.display = 'none';
   overlay.classList.remove('active');
-})
+});
 
 const res = async () => {
   const data = await getComments('itemId');
@@ -56,7 +58,6 @@ const display = async () => {
     image.src = ele.i.imageUrl;
   });
   return firstTitle;
-} 
+};
 
 display();
-
