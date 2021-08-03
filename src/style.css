@@ -5,7 +5,8 @@ body {
 .nav,
 .content-cont,
 .inner-comments,
-.comments-div {
+.comments-div,
+.like-div {
   justify-content: center;
   align-items: center;
 }
@@ -38,6 +39,10 @@ body {
   left: 0;
 }
 
+.like-div {
+  display: flex;
+}
+
 .popup-form {
   display: none;
   position: fixed;
@@ -55,6 +60,7 @@ body {
 
 .comments-div {
   flex-wrap: wrap;
+  margin: 0 20px;
 }
 
 .img-div {

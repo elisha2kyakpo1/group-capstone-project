@@ -1,6 +1,6 @@
 import './style.css';
 import { createApp, postComment, getMeals, getComments } from './api';
-import { newApi } from './rapidApi';
+// import { newApi } from './rapidApi';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
@@ -40,14 +40,22 @@ const res = async () => {
 };
 
 const display = async () => {
-  const firstTitle = await newApi();
-  firstTitle.forEach((ele) => {
+  // const firstTitle = await newApi();
+  // firstTitle.forEach((ele) => {
     const btnComment = document.createElement('button');
+    const btnLike = document.createElement('button');
+    btnLike.textContent = 'like';
+    btnLike.classList.add('like-btn');
     btnComment.classList.add('btn-save');
     btnComment.textContent = 'Comments';
     btnComment.classList.add('btn', 'btn-primary');
     const title = document.createElement('h4');
     const imageDiv = document.createElement('div');
+    const likeCont = document.createElement('div');
+    const likeDisplay = document.createElement('span');
+    btnLike.appendChild(likeDisplay);
+    likeCont.classList.add('like-div');
+    likeCont.appendChild(btnLike);
     imageDiv.classList.add('img-div');
     const imageCont = document.createElement('div');
     const image = document.createElement('img');
@@ -56,17 +64,25 @@ const display = async () => {
     btnDiv.appendChild(imageDiv);
     imageDiv.appendChild(imageCont);
     imageDiv.appendChild(title);
+    imageDiv.appendChild(likeCont);
     imageDiv.appendChild(btnComment);
-    title.textContent = ele.l;
-    image.src = ele.i.imageUrl;
+    // title.textContent = ele.l;
+    // image.src = ele.i.imageUrl;
+
+    let counter_like = 0;
+    btnLike.addEventListener('click', (e) => {
+      e.preventDefault();
+      counter_like++;
+      likeDisplay.innerHTML = counter_like;
+    });
 
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
-  });
-  return firstTitle;
+  // });
+  // return firstTitle;
 } 
 
 display();
