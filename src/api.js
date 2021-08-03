@@ -73,6 +73,5 @@ export const postComment = async (comment) => {
       'Content-type': 'application/json',
     },
   });
-  console.log(res)
   return res;
 };

@@ -23,12 +23,14 @@ sendComment.addEventListener('click', () => {
   res();
 });
 
-closeBtn.addEventListener('click', () => {
+closeBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   popup.style.display = 'none';
   overlay.classList.remove('active');
 });
 
-overlay.addEventListener('click', () => {
+overlay.addEventListener('click', (e) => {
+  e.preventDefault();
   popup.style.display = 'none';
   overlay.classList.remove('active');
 })
@@ -46,7 +48,7 @@ const display = async () => {
     btnComment.classList.add('btn', 'btn-primary');
     const title = document.createElement('h4');
     const imageDiv = document.createElement('div');
-    imageDiv.classList.add('mt-5');
+    imageDiv.classList.add('img-div');
     const imageCont = document.createElement('div');
     const image = document.createElement('img');
     imageCont.appendChild(image);
