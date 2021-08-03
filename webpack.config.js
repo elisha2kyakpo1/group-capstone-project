@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'TodoList',
+      title: 'group-capstone',
       template: './src/index.html',
     }),
   ],
