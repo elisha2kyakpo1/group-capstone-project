@@ -1,5 +1,5 @@
 import './style.css';
-import { createApp } from './api';
+import { createApp, postComment, getMeals, getComments } from './api';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
@@ -13,6 +13,22 @@ allForm.forEach((comment) => {
   });
 });
 
+const user = document.querySelector('#username').value;
+const commentText = document.querySelector('#comment_text').value;
+
+const comment = {
+  item_id: 'itemId',
+  username: user,
+  comment: commentText,
+}
+
+const sendComment = document.querySelector('.sub-comment');
+sendComment.addEventListener('click', () => {
+  console.log(comment)
+  // postComment(comment);
+  // res();
+});
+
 closeBtn.addEventListener('click', () => {
   popup.style.display = 'none';
   overlay.classList.remove('active');
@@ -23,4 +39,6 @@ overlay.addEventListener('click', () => {
   overlay.classList.remove('active');
 })
 
-createApp()
+const res = async () => {
+  const data = await getComments('itemId');
+};

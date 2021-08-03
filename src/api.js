@@ -41,6 +41,19 @@ export const getLikes = async (appId) => {
   }
 };
 
+export const getComments = async (item_id) => {
+  // console.log('item_id')
+  const response = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments?item_id=${item_id}`);
+  console.log(response.json())
+  // try {
+  //   const comments = await response.json();
+  //   console.log(comments)
+  //   return comments;
+  // } catch (error) {
+  //   return error.JSON;
+  // }
+};
+
 export const likeMeal = async ({ appId, mealId }) => {
   const response = await post(`apps/${appId}/likes`, {
     item_id: mealId,
@@ -53,4 +66,16 @@ export const getMealById = async (id) => {
   const response = await fetch(`${MEAL_API}/lookup.php?i=${id}`);
   const allMeals = await response.json();
   return allMeals[0];
+};
+
+export const postComment = async (comment) => {
+  const res = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments`, {
+    method: 'POST',
+    body: JSON.stringify(comment),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  console.log(res)
+  return res;
 };
