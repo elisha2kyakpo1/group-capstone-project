@@ -1,5 +1,6 @@
 import './style.css';
 import { createApp, postComment, getMeals, getComments } from './api';
+import newApi from './rapidApi';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
@@ -42,3 +43,5 @@ overlay.addEventListener('click', () => {
 const res = async () => {
   const data = await getComments('itemId');
 };
+
+newApi();
