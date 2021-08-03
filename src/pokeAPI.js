@@ -1,8 +1,6 @@
 const search_term = document.getElementById('search_q')
 const search_btn = document.getElementById('search-btn')
 
-
-// api https://pokeapi.co/docs/v2#pokemon
 const getPokemonData = async term => {
     document.getElementById('show_error').classList.remove('show')
     document.getElementById('show_error').classList.add('hidden')
