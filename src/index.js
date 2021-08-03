@@ -1,11 +1,16 @@
 import './style.css';
 import { createApp, postComment, getMeals, getComments } from './api';
-import newApi from './rapidApi';
+import { newApi } from './rapidApi';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
 const allForm = document.querySelectorAll('.btn');
 const closeBtn = document.querySelector('.close');
+const title = document.querySelector('.first');
+const imageDiv = document.querySelector('.images');
+const image = document.createElement('img');
+imageDiv.appendChild(image);
+
 allForm.forEach((comment) => {
   comment.addEventListener('click', (e) => {
     e.preventDefault();
@@ -26,8 +31,8 @@ const comment = {
 const sendComment = document.querySelector('.sub-comment');
 sendComment.addEventListener('click', () => {
   console.log(comment)
-  // postComment(comment);
-  // res();
+  postComment(comment);
+  res();
 });
 
 closeBtn.addEventListener('click', () => {
@@ -44,4 +49,14 @@ const res = async () => {
   const data = await getComments('itemId');
 };
 
-newApi();
+const display = async () => {
+  const firstTitle = await newApi();
+  firstTitle.forEach((ele) => {
+    title.textContent = ele.l;
+    image.src = ele.i.imageUrl;
+  });
+  return firstTitle;
+} 
+
+display();
+

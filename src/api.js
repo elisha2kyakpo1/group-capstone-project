@@ -42,16 +42,13 @@ export const getLikes = async (appId) => {
 };
 
 export const getComments = async (item_id) => {
-  // console.log('item_id')
   const response = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments?item_id=${item_id}`);
-  console.log(response.json())
-  // try {
-  //   const comments = await response.json();
-  //   console.log(comments)
-  //   return comments;
-  // } catch (error) {
-  //   return error.JSON;
-  // }
+  try {
+    const comments = await response.json();
+    return comments;
+  } catch (error) {
+    return error.JSON;
+  }
 };
 
 export const likeMeal = async ({ appId, mealId }) => {
