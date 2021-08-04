@@ -9,8 +9,6 @@ export const newApi = async () => {
   try {
     const data = await resp.json();
     const finalData = data.d;
-    // const title = document.querySelector('.first');
-    // title.textContent = finalData.l;
     return finalData;
   } catch (error) {
     return error.JSON;
