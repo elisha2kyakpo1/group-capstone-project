@@ -6,20 +6,37 @@ const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
-
+const disComment = document.querySelector('.d-comment');
 const user = document.querySelector('#username').value;
 const commentText = document.querySelector('#comment_text').value;
 
-const comment = {
-  item_id: 'itemId',
-  username: user,
-  comment: commentText,
-}
+const saveComent = async () => {
+  const movies = await newApi();
+  movies.forEach((movie) => {
+    const comment = {
+      item_id: movie.id,
+      username: document.querySelector('#username').value,
+      comment: document.querySelector('#comment_text').value,
+    }
+    postComment(comment);
+  });
+  return movies;
+};
+
+const res = async () => {
+  const data = await getComments();
+  if (!data) {
+    data.forEach((comments) => {
+      comments
+    });
+  }
+};
 
 const sendComment = document.querySelector('.sub-comment');
-sendComment.addEventListener('click', () => {
+sendComment.addEventListener('click', (e) => {
+  e.preventDefault();
   console.log(comment)
-  postComment(comment);
+  saveComent();
   res();
 });
 
@@ -35,9 +52,6 @@ overlay.addEventListener('click', (e) => {
   overlay.classList.remove('active');
 })
 
-const res = async () => {
-  const data = await getComments('itemId');
-};
 
 const display = async () => {
   const firstTitle = await newApi();
