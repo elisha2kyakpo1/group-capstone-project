@@ -6,7 +6,6 @@ export const newApi = async () => {
       "x-rapidapi-host": "imdb8.p.rapidapi.com"
     }
   })
-
   try {
   const data = await resp.json();
     const finalData = data.d;

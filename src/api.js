@@ -13,12 +13,6 @@ const postData = async (url) => {
   return response;
 };
 
-export const getMeals = async () => {
-  const response = await fetch(`${MEAL_BASE_URL}/search.php?f=b`);
-  const meals = await response.json();
-  return meals;
-};
-
 export const createApp = async () => {
   let id = localStorage.getItem('appId');
 
@@ -28,6 +22,17 @@ export const createApp = async () => {
     localStorage.setItem('appId', id);
   }
   return id;
+};
+
+export const postLikes = async (likes) => {
+  const res = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/likes`, {
+    method: 'POST',
+    body: JSON.stringify(likes),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  return res;
 };
 
 export const getLikes = async (appId) => {
@@ -49,20 +54,6 @@ export const getComments = async (item_id) => {
   } catch (error) {
     return error.JSON;
   }
-};
-
-export const likeMeal = async ({ appId, mealId }) => {
-  const response = await post(`apps/${appId}/likes`, {
-    item_id: mealId,
-  });
-
-  return response;
-};
-
-export const getMealById = async (id) => {
-  const response = await fetch(`${MEAL_API}/lookup.php?i=${id}`);
-  const allMeals = await response.json();
-  return allMeals[0];
 };
 
 export const postComment = async (comment) => {

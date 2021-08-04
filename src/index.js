@@ -1,6 +1,11 @@
 import './style.css';
-import { createApp, postComment, getMeals, getComments } from './api';
-// import { newApi } from './rapidApi';
+import {
+  postComment,
+  getComments,
+  getLikes,
+  postLikes
+} from './api';
+import { newApi } from './rapidApi';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
@@ -10,35 +15,19 @@ const disComment = document.querySelector('.d-comment');
 const user = document.querySelector('#username').value;
 const commentText = document.querySelector('#comment_text').value;
 
-const saveComent = async () => {
-  const movies = await newApi();
-  movies.forEach((movie) => {
-    const comment = {
-      item_id: movie.id,
-      username: document.querySelector('#username').value,
-      comment: document.querySelector('#comment_text').value,
-    }
-    postComment(comment);
-  });
-  return movies;
-};
-
-const res = async () => {
-  const data = await getComments();
+const res = async (id) => {
+  const data = await getComments(id);
   if (!data) {
     data.forEach((comments) => {
-      comments
+      const allComment = document.createElement('ul');
+      disComment.appendChild(allComment);
+      const listComment = document.createElement('li');
+      listComment.textContent = `${comments.username}`;
+      listComment.textContent = `${comments.comment}`;
+      allComment.appendChild(listComment);
     });
   }
 };
-
-const sendComment = document.querySelector('.sub-comment');
-sendComment.addEventListener('click', (e) => {
-  e.preventDefault();
-  console.log(comment)
-  saveComent();
-  res();
-});
 
 closeBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -54,8 +43,8 @@ overlay.addEventListener('click', (e) => {
 
 
 const display = async () => {
-  // const firstTitle = await newApi();
-  // firstTitle.forEach((ele) => {
+  const firstTitle = await newApi();
+  firstTitle.forEach((ele) => {
     const btnComment = document.createElement('button');
     const btnLike = document.createElement('button');
     btnLike.textContent = 'like';
@@ -80,8 +69,21 @@ const display = async () => {
     imageDiv.appendChild(title);
     imageDiv.appendChild(likeCont);
     imageDiv.appendChild(btnComment);
-    // title.textContent = ele.l;
-    // image.src = ele.i.imageUrl;
+    title.textContent = ele.l;
+    image.src = ele.i.imageUrl;
+
+    res(ele.id);
+    const comment = {
+      item_id: ele.id,
+      username: document.querySelector('#username').value,
+      comment: document.querySelector('#comment_text').value,
+    }
+
+    const sendComment = document.querySelector('.sub-comment');
+    sendComment.addEventListener('click', (e) => {
+      e.preventDefault();
+      postComment(comment);
+    });
 
     let counter_like = 0;
     btnLike.addEventListener('click', (e) => {
@@ -95,8 +97,8 @@ const display = async () => {
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
-  // });
-  // return firstTitle;
+  });
+  return firstTitle;
 } 
 
 display();
