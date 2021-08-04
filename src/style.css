@@ -56,6 +56,10 @@ body {
   color: #000;
 }
 
+.name-title {
+  font-weight: 500;
+}
+
 .popup-form {
   display: none;
   position: fixed;

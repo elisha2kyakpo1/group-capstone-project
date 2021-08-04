@@ -19,11 +19,14 @@ const res = async (id) => {
   const allComment = document.createElement('ul');
   data.forEach((comments) => {
     disComment.appendChild(allComment);
-    const listUsername = document.createElement('p');
+    const listName = document.createElement('h4');
+    const hr = document.createElement('hr');
+    listName.classList.add('name-title');
     const listComment = document.createElement('p');
-    listComment.textContent = `${comments.username}`;
-    listComment.textContent = `${comments.comment}`;
-    allComment.appendChild(listUsername);
+    listName.innerHTML = `Name: ${comments.username}`;
+    listComment.innerHTML=  `Comment: ${comments.comment}`;
+    allComment.appendChild(hr);
+    allComment.appendChild(listName);
     allComment.appendChild(listComment);
   });
 };
@@ -100,6 +103,7 @@ const display = async () => {
       e.preventDefault();
       document.getElementById('figure').src = ele.i.imageUrl
       document.getElementById('title').innerHTML = ele.l;
+      document.getElementById('description').innerHTML = ele.s;
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
