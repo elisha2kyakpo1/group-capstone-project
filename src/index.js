@@ -1,5 +1,6 @@
 import './style.css';
 import {
+  createApp,
   postComment,
   getComments,
   getLikes,
@@ -12,21 +13,19 @@ const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
 const disComment = document.querySelector('.d-comment');
-const user = document.querySelector('#username').value;
-const commentText = document.querySelector('#comment_text').value;
 
 const res = async (id) => {
   const data = await getComments(id);
-  if (!data) {
-    data.forEach((comments) => {
-      const allComment = document.createElement('ul');
-      disComment.appendChild(allComment);
-      const listComment = document.createElement('li');
-      listComment.textContent = `${comments.username}`;
-      listComment.textContent = `${comments.comment}`;
-      allComment.appendChild(listComment);
-    });
-  }
+  const allComment = document.createElement('ul');
+  data.forEach((comments) => {
+    disComment.appendChild(allComment);
+    const listUsername = document.createElement('p');
+    const listComment = document.createElement('p');
+    listComment.textContent = `${comments.username}`;
+    listComment.textContent = `${comments.comment}`;
+    allComment.appendChild(listUsername);
+    allComment.appendChild(listComment);
+  });
 };
 
 closeBtn.addEventListener('click', (e) => {
@@ -72,17 +71,22 @@ const display = async () => {
     title.textContent = ele.l;
     image.src = ele.i.imageUrl;
 
-    res(ele.id);
-    const comment = {
-      item_id: ele.id,
-      username: document.querySelector('#username').value,
-      comment: document.querySelector('#comment_text').value,
-    }
+    const clearFields = () => {
+      document.querySelector('#username').value = '';
+      document.querySelector('#comment_text').value = '';
+    };
 
     const sendComment = document.querySelector('.sub-comment');
     sendComment.addEventListener('click', (e) => {
       e.preventDefault();
+      const comment = {
+        item_id: 'ele.id',
+        username: document.querySelector('#username').value,
+        comment: document.querySelector('#comment_text').value,
+      }
+      console.log(comment)
       postComment(comment);
+      clearFields();
     });
 
     let counter_like = 0;
@@ -94,10 +98,13 @@ const display = async () => {
 
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
+      document.getElementById('figure').src = ele.i.imageUrl
+      document.getElementById('title').innerHTML = ele.l;
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
   });
+  res('ele.id');
   return firstTitle;
 } 
 

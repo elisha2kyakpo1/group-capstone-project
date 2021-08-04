@@ -1,4 +1,3 @@
-const MEAL_API = 'https://www.themealdb.com/api/json/v1/1';
 const USER_DATA_API = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
 
 const postData = async (url) => {
@@ -14,14 +13,13 @@ const postData = async (url) => {
 };
 
 export const createApp = async () => {
-  let id = localStorage.getItem('appId');
-
-  if (!id) {
+  let appId = localStorage.getItem('appId');
+  if (!appId) {
     const response = await postData('apps/');
-    id = await response.text();
-    localStorage.setItem('appId', id);
+    appId = await response.text();
+    localStorage.setItem('appId', appId);
   }
-  return id;
+  return appId;
 };
 
 export const postLikes = async (likes) => {
