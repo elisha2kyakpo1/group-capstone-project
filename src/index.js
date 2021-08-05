@@ -2,8 +2,8 @@ import './style.css';
 import {
   postComment,
   getComments,
-  getLikes,
   postLikes,
+  getLikes,
   createApp,
 } from './api';
 import { newApi } from './rapidApi';
@@ -17,10 +17,12 @@ const commentDisplay = document.querySelector('.comments-display');
 const commentsCount = document.getElementById('c-count');
 const moviesCount = document.getElementById('movies-count');
 const spanMovie = document.createElement('span');
-const sendComment = document.querySelector('.sub-comment');
+const form = document.querySelector('.form');
 moviesCount.appendChild(spanMovie);
 const allComment = document.createElement('ul');
+const sendComment = document.createElement('button');
 commentDisplay.appendChild(allComment);
+
 const hidden = () => {
   while (allComment.lastElementChild) {
     allComment.removeChild(allComment.lastElementChild);
@@ -88,11 +90,15 @@ const display = async () => {
     image.src = ele.i.imageUrl;
     spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
     
-    // responseComments(ele.id);
+    responseComments(ele.id);
     const clearFields = () => {
       document.querySelector('#username').value = '';
       document.querySelector('#comment_text').value = '';
     };
+
+    form.appendChild(sendComment)
+    sendComment.classList.add('sub-comment', 'btn', 'btn-primary', 'mt-2')
+    sendComment.textContent = 'Comment';
 
     sendComment.addEventListener('click', (e) => {
       e.preventDefault();
@@ -107,17 +113,22 @@ const display = async () => {
       }
     });
 
-    let counter_like = 0;
-    btnLike.addEventListener('click', async (e) => {
+    btnLike.addEventListener('click', (e) => {
       e.preventDefault();
       const likes = { item_id: ele.id }
-      if (counter_like) {
-        counter_like + 1;
-        postLikes(likes);
-      }
-      likeDisplay.innerHTML = await getLikes();
+      postLikes(likes);
     });
 
+    const likeWrapper = async (id) => {
+      const getLike = await getLikes(id);
+      getLike.forEach((like) => {
+        const likeItem = like.item_id.length;
+        likeDisplay.innerHTML = likeItem;
+      });
+    }
+
+    likeWrapper(ele.id);
+    
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
       hidden();

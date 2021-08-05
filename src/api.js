@@ -30,6 +30,7 @@ export const postLikes = async (likes) => {
       'Content-type': 'application/json',
     },
   });
+  console.log(res)
   return res;
 };
 
@@ -62,5 +63,6 @@ export const postComment = async (data) => {
       'Content-type': 'application/json',
     },
   });
+  console.log(res)
   return res;
 };
