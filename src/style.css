@@ -56,6 +56,11 @@ body {
   color: #000;
 }
 
+.add-comment,
+.comment-count {
+  font-weight: bold;
+}
+
 .name-title {
   font-weight: 500;
 }

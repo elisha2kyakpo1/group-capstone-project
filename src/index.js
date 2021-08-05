@@ -1,54 +1,26 @@
 import './style.css';
 import {
   postComment,
-  getComments,
   postLikes,
-  getLikes,
   createApp,
 } from './api';
 import { newApi } from './rapidApi';
 import { dspLikes } from './likes'
+import { dspComments } from './comments'
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
-const disComment = document.querySelector('.d-comment');
 const sendComment = document.querySelector('.sub-comment');
-const commentDisplay = document.querySelector('.comments-display');
+// const commentDisplay = document.querySelector('.comments-display');
 const commentsCount = document.getElementById('c-count');
+commentsCount.classList.add('counter-comment');
 const moviesCount = document.getElementById('movies-count');
 const spanMovie = document.createElement('span');
-const form = document.querySelector('.form');
 moviesCount.appendChild(spanMovie);
-const allComment = document.createElement('ul');
-commentDisplay.appendChild(allComment);
-
-const hidden = () => {
-  while (allComment.lastElementChild) {
-    allComment.removeChild(allComment.lastElementChild);
-  }
-};
-
-const responseComments = async (id) => {
-  let itemCommentCount = 0;
-  const data = await getComments(id);
-  if (!data) {
-    data.forEach((comments) => {
-      itemCommentCount++;
-      const listName = document.createElement('h6');
-      const hr = document.createElement('hr');
-      listName.classList.add('name-title');
-      const listComment = document.createElement('div');
-      listName.innerHTML += `Name: ${comments.username}`;
-      listComment.innerHTML += `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
-      commentsCount.innerHTML = `Comments (${itemCommentCount})`;
-      allComment.appendChild(hr);
-      allComment.appendChild(listName);
-      allComment.appendChild(listComment);
-    });
-  }
-};
+// const allComment = document.createElement('ul');
+// commentDisplay.appendChild(allComment);
 
 closeBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -77,8 +49,6 @@ const display = async () => {
     const imageDiv = document.createElement('div');
     const likeCont = document.createElement('div');
 
-    const form = document.querySelector('.form');
-
     const likeDisplay = document.createElement('span');
     likeDisplay.id = 'l' + ele.id;
 
@@ -99,7 +69,9 @@ const display = async () => {
     image.src = ele.i.imageUrl;
     spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
 
-    responseComments(ele.id);
+    if (index === firstTitle.length - 1) {
+      dspComments(firstTitle);
+    }
     const clearFields = () => {
       document.querySelector('#username').value = '';
       document.querySelector('#comment_text').value = '';
@@ -126,8 +98,6 @@ const display = async () => {
 
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
-      hidden();
-      responseComments(ele.id);
       document.getElementById('figure').src = ele.i.imageUrl
       document.getElementById('title').innerHTML = ele.l;
       document.getElementById('description').innerHTML = ele.s;
