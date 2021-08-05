@@ -1,5 +1,5 @@
 const USER_DATA_API = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
-
+const MY_APP_ID = 'bFEKFY90zJAFr0Nn4Cvv';
 const postData = async (url) => {
   const response = await fetch(`${USER_DATA_API}${url}`, {
     method: 'POST',
@@ -23,7 +23,7 @@ export const createApp = async () => {
 };
 
 export const postLikes = async (likes) => {
-  const res = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/likes`, {
+  const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`, {
     method: 'POST',
     body: JSON.stringify(likes),
     headers: {
@@ -34,7 +34,7 @@ export const postLikes = async (likes) => {
 };
 
 export const getLikes = async (appId) => {
-  const response = await fetch(`${USER_DATA_API}apps/${appId}/likes`);
+  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`);
 
   try {
     const likes = await response.json();
@@ -45,7 +45,7 @@ export const getLikes = async (appId) => {
 };
 
 export const getComments = async (item_id) => {
-  const response = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments?item_id=${item_id}`);
+  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${item_id}`);
   try {
     const comments = await response.json();
     return comments;
@@ -54,10 +54,10 @@ export const getComments = async (item_id) => {
   }
 };
 
-export const postComment = async (comment) => {
-  const res = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments`, {
+export const postComment = async (data) => {
+  const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments`, {
     method: 'POST',
-    body: JSON.stringify(comment),
+    body: JSON.stringify(data),
     headers: {
       'Content-type': 'application/json',
     },

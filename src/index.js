@@ -1,10 +1,10 @@
 import './style.css';
 import {
-  createApp,
   postComment,
   getComments,
   getLikes,
-  postLikes
+  postLikes,
+  createApp,
 } from './api';
 import { newApi } from './rapidApi';
 
@@ -13,24 +13,31 @@ const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
 const disComment = document.querySelector('.d-comment');
+const commentDisplay = document.querySelector('.comments-display');
 const commentsCount = document.getElementById('c-count');
 const moviesCount = document.getElementById('movies-count');
 const spanMovie = document.createElement('span');
+const sendComment = document.querySelector('.sub-comment');
 moviesCount.appendChild(spanMovie);
+const allComment = document.createElement('ul');
+commentDisplay.appendChild(allComment);
+const hidden = () => {
+  while (allComment.lastElementChild) {
+    allComment.removeChild(allComment.lastElementChild);
+  }
+};
 
-const res = async (id) => {
+const responseComments = async (id) => {
   let itemCommentCount = 0;
   const data = await getComments(id);
-  const allComment = document.createElement('ul');
   data.forEach((comments) => {
     itemCommentCount++;
-    disComment.appendChild(allComment);
     const listName = document.createElement('h6');
     const hr = document.createElement('hr');
     listName.classList.add('name-title');
     const listComment = document.createElement('div');
-    listName.innerHTML = `Name: ${comments.username}`;
-    listComment.innerHTML=  `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
+    listName.innerHTML += `Name: ${comments.username}`;
+    listComment.innerHTML +=  `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
     commentsCount.innerHTML = `Comments (${itemCommentCount})`;
     allComment.appendChild(hr);
     allComment.appendChild(listName);
@@ -49,7 +56,6 @@ overlay.addEventListener('click', (e) => {
   popup.style.display = 'none';
   overlay.classList.remove('active');
 })
-
 
 const display = async () => {
   const firstTitle = await newApi();
@@ -82,42 +88,49 @@ const display = async () => {
     image.src = ele.i.imageUrl;
     spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
     
+    // responseComments(ele.id);
     const clearFields = () => {
       document.querySelector('#username').value = '';
       document.querySelector('#comment_text').value = '';
     };
 
-    const sendComment = document.querySelector('.sub-comment');
     sendComment.addEventListener('click', (e) => {
       e.preventDefault();
-      const comment = {
+      const commentObj = {
         item_id: ele.id,
         username: document.querySelector('#username').value,
         comment: document.querySelector('#comment_text').value,
       }
-      postComment(comment);
-      clearFields();
+      if (username !== '' || cooment !== '') {
+        postComment(commentObj);
+        clearFields();
+      }
     });
 
     let counter_like = 0;
-    btnLike.addEventListener('click', (e) => {
+    btnLike.addEventListener('click', async (e) => {
       e.preventDefault();
-      counter_like++;
-      likeDisplay.innerHTML = counter_like;
+      const likes = { item_id: ele.id }
+      if (counter_like) {
+        counter_like + 1;
+        postLikes(likes);
+      }
+      likeDisplay.innerHTML = await getLikes();
     });
 
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
+      hidden();
+      responseComments(ele.id);
       document.getElementById('figure').src = ele.i.imageUrl
       document.getElementById('title').innerHTML = ele.l;
       document.getElementById('description').innerHTML = ele.s;
-      res(ele.id);    
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
   });
   return firstTitle;
 } 
-
+// createApp()
 display();
 
