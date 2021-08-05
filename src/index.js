@@ -7,6 +7,7 @@ import {
   createApp,
 } from './api';
 import { newApi } from './rapidApi';
+import { dspLikes } from './likes'
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
@@ -39,7 +40,7 @@ const responseComments = async (id) => {
     listName.classList.add('name-title');
     const listComment = document.createElement('div');
     listName.innerHTML += `Name: ${comments.username}`;
-    listComment.innerHTML +=  `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
+    listComment.innerHTML += `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
     commentsCount.innerHTML = `Comments (${itemCommentCount})`;
     allComment.appendChild(hr);
     allComment.appendChild(listName);
@@ -61,9 +62,10 @@ overlay.addEventListener('click', (e) => {
 
 const display = async () => {
   const firstTitle = await newApi();
-  firstTitle.forEach((ele) => {
+  firstTitle.forEach((ele, index) => {
     const btnComment = document.createElement('button');
     const btnLike = document.createElement('button');
+    btnLike.id = 'l' + ele.id
     btnLike.textContent = 'like';
     btnLike.classList.add('like-btn');
     btnComment.classList.add('btn-save');
@@ -73,6 +75,8 @@ const display = async () => {
     const imageDiv = document.createElement('div');
     const likeCont = document.createElement('div');
     const likeDisplay = document.createElement('span');
+    likeDisplay.id = 'l' + ele.id;
+
     btnLike.appendChild(likeDisplay);
     likeCont.classList.add('like-div');
     likeCont.appendChild(btnLike);
@@ -89,7 +93,7 @@ const display = async () => {
     title.textContent = ele.l;
     image.src = ele.i.imageUrl;
     spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
-    
+
     responseComments(ele.id);
     const clearFields = () => {
       document.querySelector('#username').value = '';
@@ -119,16 +123,6 @@ const display = async () => {
       postLikes(likes);
     });
 
-    const likeWrapper = async (id) => {
-      const getLike = await getLikes(id);
-      getLike.forEach((like) => {
-        const likeItem = like.item_id.length;
-        likeDisplay.innerHTML = likeItem;
-      });
-    }
-
-    likeWrapper(ele.id);
-    
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
       hidden();
@@ -139,9 +133,13 @@ const display = async () => {
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
+
+    if (index == firstTitle.length - 1) {
+      dspLikes(firstTitle);
+    }
   });
   return firstTitle;
-} 
+}
 // createApp()
 display();
 
