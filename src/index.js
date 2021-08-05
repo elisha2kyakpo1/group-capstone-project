@@ -13,18 +13,25 @@ const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
 const disComment = document.querySelector('.d-comment');
+const commentsCount = document.getElementById('c-count');
+const moviesCount = document.getElementById('movies-count');
+const spanMovie = document.createElement('span');
+moviesCount.appendChild(spanMovie);
 
 const res = async (id) => {
+  let itemCommentCount = 0;
   const data = await getComments(id);
   const allComment = document.createElement('ul');
   data.forEach((comments) => {
+    itemCommentCount++;
     disComment.appendChild(allComment);
-    const listName = document.createElement('h4');
+    const listName = document.createElement('h6');
     const hr = document.createElement('hr');
     listName.classList.add('name-title');
-    const listComment = document.createElement('p');
+    const listComment = document.createElement('div');
     listName.innerHTML = `Name: ${comments.username}`;
-    listComment.innerHTML=  `Comment: ${comments.comment}`;
+    listComment.innerHTML=  `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
+    commentsCount.innerHTML = `Comments (${itemCommentCount})`;
     allComment.appendChild(hr);
     allComment.appendChild(listName);
     allComment.appendChild(listComment);
@@ -73,7 +80,8 @@ const display = async () => {
     imageDiv.appendChild(btnComment);
     title.textContent = ele.l;
     image.src = ele.i.imageUrl;
-
+    spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
+    
     const clearFields = () => {
       document.querySelector('#username').value = '';
       document.querySelector('#comment_text').value = '';
@@ -83,11 +91,10 @@ const display = async () => {
     sendComment.addEventListener('click', (e) => {
       e.preventDefault();
       const comment = {
-        item_id: 'ele.id',
+        item_id: ele.id,
         username: document.querySelector('#username').value,
         comment: document.querySelector('#comment_text').value,
       }
-      console.log(comment)
       postComment(comment);
       clearFields();
     });
@@ -104,11 +111,11 @@ const display = async () => {
       document.getElementById('figure').src = ele.i.imageUrl
       document.getElementById('title').innerHTML = ele.l;
       document.getElementById('description').innerHTML = ele.s;
+      res(ele.id);    
       popup.style.display = 'block';
       overlay.classList.add('active');
     });
   });
-  res('ele.id');
   return firstTitle;
 } 
 
