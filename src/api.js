@@ -1,6 +1,5 @@
 const USER_DATA_API = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
-const MY_APP_ID = 'bFEKFY90zJAFr0Nn4Cvv';
-// https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/bFEKFY90zJAFr0Nn4Cvv/likes
+const MY_APP_ID = 't1PxqBiZDtpf8oKXiWHv';
 const postData = async (url) => {
   const response = await fetch(`${USER_DATA_API}${url}`, {
     method: 'POST',

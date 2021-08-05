@@ -14,6 +14,7 @@ const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
 const disComment = document.querySelector('.d-comment');
+const sendComment = document.querySelector('.sub-comment');
 const commentDisplay = document.querySelector('.comments-display');
 const commentsCount = document.getElementById('c-count');
 const moviesCount = document.getElementById('movies-count');
@@ -21,7 +22,6 @@ const spanMovie = document.createElement('span');
 const form = document.querySelector('.form');
 moviesCount.appendChild(spanMovie);
 const allComment = document.createElement('ul');
-const sendComment = document.createElement('button');
 commentDisplay.appendChild(allComment);
 
 const hidden = () => {
@@ -33,19 +33,21 @@ const hidden = () => {
 const responseComments = async (id) => {
   let itemCommentCount = 0;
   const data = await getComments(id);
-  data.forEach((comments) => {
-    itemCommentCount++;
-    const listName = document.createElement('h6');
-    const hr = document.createElement('hr');
-    listName.classList.add('name-title');
-    const listComment = document.createElement('div');
-    listName.innerHTML += `Name: ${comments.username}`;
-    listComment.innerHTML += `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
-    commentsCount.innerHTML = `Comments (${itemCommentCount})`;
-    allComment.appendChild(hr);
-    allComment.appendChild(listName);
-    allComment.appendChild(listComment);
-  });
+  if (!data) {
+    data.forEach((comments) => {
+      itemCommentCount++;
+      const listName = document.createElement('h6');
+      const hr = document.createElement('hr');
+      listName.classList.add('name-title');
+      const listComment = document.createElement('div');
+      listName.innerHTML += `Name: ${comments.username}`;
+      listComment.innerHTML += `Date: ${comments.creation_date} | Comment: ${comments.comment}`;
+      commentsCount.innerHTML = `Comments (${itemCommentCount})`;
+      allComment.appendChild(hr);
+      allComment.appendChild(listName);
+      allComment.appendChild(listComment);
+    });
+  }
 };
 
 closeBtn.addEventListener('click', (e) => {
@@ -65,7 +67,7 @@ const display = async () => {
   firstTitle.forEach((ele, index) => {
     const btnComment = document.createElement('button');
     const btnLike = document.createElement('button');
-    btnLike.id = 'l' + ele.id
+
     btnLike.textContent = 'like';
     btnLike.classList.add('like-btn');
     btnComment.classList.add('btn-save');
@@ -74,6 +76,9 @@ const display = async () => {
     const title = document.createElement('h4');
     const imageDiv = document.createElement('div');
     const likeCont = document.createElement('div');
+
+    const form = document.querySelector('.form');
+
     const likeDisplay = document.createElement('span');
     likeDisplay.id = 'l' + ele.id;
 
@@ -100,10 +105,6 @@ const display = async () => {
       document.querySelector('#comment_text').value = '';
     };
 
-    form.appendChild(sendComment)
-    sendComment.classList.add('sub-comment', 'btn', 'btn-primary', 'mt-2')
-    sendComment.textContent = 'Comment';
-
     sendComment.addEventListener('click', (e) => {
       e.preventDefault();
       const commentObj = {
@@ -111,7 +112,7 @@ const display = async () => {
         username: document.querySelector('#username').value,
         comment: document.querySelector('#comment_text').value,
       }
-      if (username !== '' || cooment !== '') {
+      if (commentObj.username !== '' && commentObj.comment !== '') {
         postComment(commentObj);
         clearFields();
       }
@@ -134,7 +135,7 @@ const display = async () => {
       overlay.classList.add('active');
     });
 
-    if (index == firstTitle.length - 1) {
+    if (index === firstTitle.length - 1) {
       dspLikes(firstTitle);
     }
   });
