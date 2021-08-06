@@ -105,11 +105,13 @@ If you are non a technical person you can download the zip file.
 - GitHub: [@CollinsTatang1](https://github.com/CollinsTatang)
 - Twitter: [@CollinsTatang1](https://twitter.com/CollinsTatang1)
 - LinkedIn: [Makungong Collins](https://www.linkedin.com/in/makungong-collins/)
+  
+👤 **Elisha Kyakopo**
 
-## Elisha Kyakopo
-  Linkedin: [Elisha Kyakopo](https://www.linkedin.com/in/elisha-kyakopo/)
-  Github: [@elisha2kyakpo1](https://github.com/elisha2kyakpo1)
-  Twitter: [@elisha1k](https://twitter.com/Elisha1k)
+- GitHub: [@elisha2kyakpo1](https://github.com/elisha2kyakpo1)
+- Twitter: [@elisha1k](https://twitter.com/Elisha1k)
+- LinkedIn: [Elisha Kyakopo](https://www.linkedin.com/in/elisha-kyakopo/)
+
 =======
 
 ## 🤝 Contributing
