@@ -2,7 +2,7 @@
 
 # JavaScript-capstone-project
 
-The JavaScript capstone project is about building our own web application based on an external API. The webapp have 3 user interfaces:
+The JavaScript capstone project is about building our own web application based on an external API. The webapp have 2 user interfaces:
 
 - A home page showing a list of items that you can "like."
 - A popup window with more data about an item that you can use to comment on it.
