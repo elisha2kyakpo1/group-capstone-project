@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/elisha2kyakpo1/My-template#readme",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.15.0",
     "css-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.2",
     "icons-loader": "0.0.6",

@@ -1,12 +1,14 @@
-import { itemsCount } from "../__mocks__/itemsCount";
+import { rapidApi } from '../rapidApi';
 
 describe('Testing Asynchronous Code', () => {
-  const getUsers = jest.fn(url => mockUsers);
+  const counterItems = async () => {
+    const getItems = await rapidApi();
+    getItems.forEach((element) => {
+      return Object.keys(element.id).length - 1;
+    });
+    return getItems;
+  }
   it('test the count of all items', () => {
-    expect(getUsers(mockUrl)).toBe(mockUsers);
-    console.log(getUsers);
-  });
-  it('called getUser with a mockUrl', () => {
-    expect(getUsers).toHaveBeenCalledWith(mockUrl);
+    expect(counterItems()).toEqual(8);
   });
 });
