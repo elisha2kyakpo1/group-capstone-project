@@ -27,7 +27,7 @@ overlay.addEventListener('click', (e) => {
   e.preventDefault();
   popup.style.display = 'none';
   overlay.classList.remove('active');
-});
+})
 
 const display = async () => {
   const firstTitle = await newApi();
@@ -108,6 +108,8 @@ const display = async () => {
     postComment(commentObj).then(() => {
       dspComments(firstTitle[currentItemIndex])
     })
+
+    clearFields();
   })
 
   return firstTitle;
