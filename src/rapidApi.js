@@ -1,4 +1,4 @@
-export const newApi = async () => {
+const newApi = async () => {
   const resp = await fetch("https://imdb8.p.rapidapi.com/auto-complete?q=game%20of%20thr", {
     "method": "GET",
     "headers": {
@@ -14,3 +14,5 @@ export const newApi = async () => {
     return error.JSON;
   }
 };
+
+export default newApi;

@@ -1,1 +1,3 @@
-export const display = (getData) => getData.length || 0;
+const display = (getData) => getData.length || 0;
+
+export default display;

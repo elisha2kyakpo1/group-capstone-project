@@ -1,4 +1,4 @@
-import { display } from "../__mocks__/itemsCount";
+import display from "../__mocks__/itemsCount";
 
 describe('Testing Asynchronous Code', () => {
   const mockItems = [

@@ -12,7 +12,7 @@ const postData = async (url) => {
   return response;
 };
 
-export const createApp = async () => {
+const createApp = async () => {
   let appId = localStorage.getItem('appId');
   if (!appId) {
     const response = await postData('apps/');
@@ -22,7 +22,7 @@ export const createApp = async () => {
   return appId;
 };
 
-export const postLikes = async (likes) => {
+const postLikes = async (likes) => {
   const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`, {
     method: 'POST',
     body: JSON.stringify(likes),
@@ -33,7 +33,7 @@ export const postLikes = async (likes) => {
   return res;
 };
 
-export const getLikes = async (appId) => {
+const getLikes = async (MY_APP_ID) => {
   const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`);
 
   try {
@@ -44,7 +44,7 @@ export const getLikes = async (appId) => {
   }
 };
 
-export const getComments = async (item_id) => {
+const getComments = async (item_id) => {
   const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${item_id}`);
   try {
     const comments = await response.json();
@@ -54,7 +54,7 @@ export const getComments = async (item_id) => {
   }
 };
 
-export const postComment = async (data) => {
+const postComment = async (data) => {
   const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -65,3 +65,11 @@ export const postComment = async (data) => {
 
   return res;
 };
+
+export {
+  postComment,
+  getComments,
+  getLikes,
+  createApp,
+  postLikes
+}

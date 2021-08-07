@@ -1,4 +1,4 @@
-const { getCommentsCount } = require('../utills.js');
+import getCommentsCount from '../utills';
 const mockComments = [
   {
     item_id: 'txvcfrt',
