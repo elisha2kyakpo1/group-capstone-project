@@ -84,6 +84,7 @@ body {
 .comments-div {
   flex-wrap: wrap;
   margin: 0 20px;
+  margin-bottom: 5%;
 }
 
 .img-div {
