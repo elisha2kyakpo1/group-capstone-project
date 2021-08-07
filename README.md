@@ -5,10 +5,9 @@
 The JavaScript capstone project is about building our own web application based on an external API. The webapp have 2 user interfaces:
 
 - A home page showing a list of items that you can "like."
-- A popup window with more data about an item that you can use to comment on it.
-- In this project we pratice giving code reviews to our teammates.
-- We built an API that provides data about movies and then build the webpack app around it. 
-- We use Jest to test the counters of comments and likes.
+- A popup window with more data about an item that you can use to comment on.
+- In this project we pratice giving code reviews to our teammates. 
+- We use Jest to test the counters of comments and all items.
 
 ### Project requirements
 - You should build these interfaces:
@@ -16,16 +15,9 @@ The JavaScript capstone project is about building our own web application based 
   - The *comments popup*.
 - You should follow the layout of the wireframes provided. You should personalize the rest of the design including colors, typographies, spacings, etc.
 - Home page
-  - When the page loads, the webapp retrieves data from:
-    - The selected API and shows the list of items on screen.
+  - When the page loads, the webapp retrieves data from rapid API:
     - The Involvement API to show the item likes.
-  - Remember that your page should make only 2 requests:
-    - One to the base API.
-    - And **one** to the Involvement API.
-  - When the user clicks on the Like button of an item, the interaction is recorded in the Involvement API and the screen is updated.
   - When the user clicks on the "Comments" button, the Comments popup appears.
-  - Home page header and navigation similar to the given mockup.
-  - Home page footer similar to the given mockup.
 - Comments popup
   - When the popup loads, the webapp retrieves data from:
     - The selected API and shows details about the selected item.
@@ -33,7 +25,7 @@ The JavaScript capstone project is about building our own web application based 
   - When the user clicks on the "Comment" button, the data is recorded in the Involvement API and the screen is updated.
 
 **Counters**
-We have counters in all the interfaces that show:
+We have counters that show:
 - The number of items (home).
 - The number of comments (comments popup).
 
@@ -47,7 +39,7 @@ We have counters in all the interfaces that show:
 
 ## Getting Started
 
-If you want a copy of this file go to the github repository and download it from there
+If you want a copy of this file go to the github repository and download it from the link below.
 
 - [`group-capstone-project`](https://github.com/elisha2kyakpo1/group-capstone-project.git)
 
@@ -56,7 +48,7 @@ If you want a copy of this file go to the github repository and download it from
 
 ```cmd
 git clone https://github.com/elisha2kyakpo1/group-capstone-project.git 
-cd ./group-capstone-project
+cd group-capstone-project
 ```
 ### Install
 
@@ -81,17 +73,21 @@ If you are non a technical person you can download the zip file.
 - Then you need to decompress it.
 - You will need to have Zip compress file software installed in your computer. If you don't have it you can download it from here
   [`https://www.7-zip.org/download.html`](https://www.7-zip.org/download.html)
-- Do double click on the Capstone-1.zip and choose a folder where to place all teh decompressed files.
+- Do double click on the Capstone-1.zip and choose a folder where to place all the decompressed files.
 - Once you are done decompressing, you can open the created folder.
 - In it you can double click on the index.html file and choose a browser to open it (For example google Chrome Browser).
 - Now you should be able to see the project.
-- Remember to use the mouse to navigate through the website. Also you can use the keys 'arrow up' and 'arrow down' of your keyboard
-  to scroll up and down.
+- Remember to use the mouse to navigate through the website. Also you can use the keys 'arrow up' and 'arrow down' of your keyboard to scroll up and down.
 
 ### Prerequisites
 
 - Node.JS
 
+### Testing
+Open the project in your prefered code editor and run the command below.
+```
+npm test
+```
 ## Author
 
 👤 **Makungong Collins Tatang**
