@@ -30,7 +30,6 @@ export const postLikes = async (likes) => {
       'Content-type': 'application/json',
     },
   });
-  console.log(res)
   return res;
 };
 
@@ -46,7 +45,6 @@ export const getLikes = async (appId) => {
 };
 
 export const getComments = async (item_id) => {
-  console.log(item_id)
   const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${item_id}`);
   try {
     const comments = await response.json();
