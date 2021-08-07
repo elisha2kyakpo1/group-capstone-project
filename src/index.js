@@ -2,10 +2,10 @@ import './style.css';
 import {
   postComment,
   postLikes,
-} from './api.js';
-import newApi from './rapidApi.js';
-import dspLikes from './likes.js';
-import dspComments from './comments.js';
+} from './api';
+import newApi from './rapidApi';
+import dspLikes from './likes';
+import dspComments from './comments';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');

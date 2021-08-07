@@ -1,5 +1,5 @@
-import { getComments } from './api.js';
-import getCommentsCount from './utills.js';
+import { getComments } from './api';
+import getCommentsCount from './utills';
 
 const dspComments = async (items) => {
   const comments = await getComments(items.id);

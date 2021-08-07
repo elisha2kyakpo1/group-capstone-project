@@ -1,4 +1,4 @@
-import { getLikes } from './api.js';
+import { getLikes } from './api';
 
 const dspLikes = async (items) => {
   const getLike = await getLikes(items[0].id);

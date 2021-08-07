@@ -1,4 +1,4 @@
-import getCommentsCount from '../utills.js';
+import getCommentsCount from '../utills';
 
 const mockComments = [
   {
