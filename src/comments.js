@@ -1,5 +1,6 @@
-import { getComments } from "./api";
-import getCommentsCount from './utills'
+import { getComments } from './api.js';
+import getCommentsCount from './utills.js';
+
 const dspComments = async (items) => {
   const comments = await getComments(items.id);
   document.getElementById('comments-display').innerHTML = '';

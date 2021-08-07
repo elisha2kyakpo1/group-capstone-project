@@ -33,7 +33,7 @@ const postLikes = async (likes) => {
   return res;
 };
 
-const getLikes = async (MY_APP_ID) => {
+const getLikes = async () => {
   const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`);
 
   try {
@@ -44,8 +44,8 @@ const getLikes = async (MY_APP_ID) => {
   }
 };
 
-const getComments = async (item_id) => {
-  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${item_id}`);
+const getComments = async (itemId) => {
+  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${itemId}`);
   try {
     const comments = await response.json();
     return comments;
@@ -71,5 +71,5 @@ export {
   getComments,
   getLikes,
   createApp,
-  postLikes
-}
+  postLikes,
+};

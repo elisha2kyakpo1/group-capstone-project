@@ -2,7 +2,7 @@ import './style.css';
 import {
   postComment,
   postLikes,
-} from './api';
+} from './api.js';
 import newApi from './rapidApi.js';
 import dspLikes from './likes.js';
 import dspComments from './comments.js';
@@ -22,6 +22,11 @@ closeBtn.addEventListener('click', (e) => {
   popup.style.display = 'none';
   overlay.classList.remove('active');
 });
+
+const clearFields = () => {
+  document.querySelector('#username').value = '';
+  document.querySelector('#comment_text').value = '';
+};
 
 overlay.addEventListener('click', (e) => {
   e.preventDefault();
@@ -48,7 +53,7 @@ const display = async () => {
     const imageDiv = document.createElement('div');
     const likeCont = document.createElement('div');
     const likeDisplay = document.createElement('span');
-    likeDisplay.id = 'l' + ele.id;
+    likeDisplay.id = `l${ele.id}`;
 
     btnLike.appendChild(likeDisplay);
     likeCont.classList.add('like-div');
@@ -66,11 +71,6 @@ const display = async () => {
     title.textContent = ele.l;
     image.src = ele.i.imageUrl;
     spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`;
-
-    const clearFields = () => {
-      document.querySelector('#username').value = '';
-      document.querySelector('#comment_text').value = '';
-    };
 
     btnLike.addEventListener('click', (e) => {
       e.preventDefault();
@@ -105,7 +105,7 @@ const display = async () => {
       comment: document.querySelector('#comment_text').value,
     };
 
-  postComment(commentObj).then(() => {
+    postComment(commentObj).then(() => {
       dspComments(firstTitle[currentItemIndex]);
     });
 

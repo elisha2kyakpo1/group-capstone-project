@@ -1,4 +1,5 @@
-import getCommentsCount from '../utills';
+import getCommentsCount from '../utills.js';
+
 const mockComments = [
   {
     item_id: 'txvcfrt',
