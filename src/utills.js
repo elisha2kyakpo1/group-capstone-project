@@ -1,0 +1,1 @@
+export const getCommentsCount = (comments) => comments.length || 0;

@@ -1,0 +1,1 @@
+export const display = (getData) => getData.length || 0;

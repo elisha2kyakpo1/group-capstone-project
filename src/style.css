@@ -5,7 +5,8 @@ body {
 .nav,
 .content-cont,
 .inner-comments,
-.comments-div {
+.comments-div,
+.like-div {
   justify-content: center;
   align-items: center;
 }
@@ -38,23 +39,51 @@ body {
   left: 0;
 }
 
+.like-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.like-div button {
+  border: none;
+  outline: none;
+  color: red;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.like-div button span {
+  color: #000;
+}
+
+.add-comment,
+.comment-count {
+  font-weight: bold;
+}
+
+.name-title {
+  font-weight: 500;
+}
+
 .popup-form {
   display: none;
   position: fixed;
+  transform: translate(-50%, -50%);
   top: 50%;
-  left: 10%;
-  bottom: 50%;
-  right: 10%;
-  width: 80%;
-  height: 100%;
+  left: 50%;
+  width: 600px;
+  height: 80vh;
+  margin: auto;
   box-shadow: 2px 2px 5px black;
   background-color: #fff;
   padding: 10px 20px;
   z-index: 500;
+  overflow-y: scroll;
 }
 
 .comments-div {
   flex-wrap: wrap;
+  margin: 0 20px;
 }
 
 .img-div {
@@ -72,7 +101,8 @@ body {
   color: black;
 }
 
-.image {
+.image,
+.pop-img {
   object-fit: cover;
   width: 100%;
   height: 300px;
@@ -85,4 +115,13 @@ body {
 .form,
 .comments-rsvp {
   flex-direction: column;
+}
+
+footer {
+  background-color: #cfd9e0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1%;
 }

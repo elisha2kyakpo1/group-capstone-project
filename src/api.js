@@ -1,6 +1,5 @@
-const MEAL_API = 'https://www.themealdb.com/api/json/v1/1';
 const USER_DATA_API = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
-
+const MY_APP_ID = 't1PxqBiZDtpf8oKXiWHv';
 const postData = async (url) => {
   const response = await fetch(`${USER_DATA_API}${url}`, {
     method: 'POST',
@@ -13,25 +12,30 @@ const postData = async (url) => {
   return response;
 };
 
-export const getMeals = async () => {
-  const response = await fetch(`${MEAL_BASE_URL}/search.php?f=b`);
-  const meals = await response.json();
-  return meals;
+export const createApp = async () => {
+  let appId = localStorage.getItem('appId');
+  if (!appId) {
+    const response = await postData('apps/');
+    appId = await response.text();
+    localStorage.setItem('appId', appId);
+  }
+  return appId;
 };
 
-export const createApp = async () => {
-  let id = localStorage.getItem('appId');
-
-  if (!id) {
-    const response = await postData('apps/');
-    id = await response.text();
-    localStorage.setItem('appId', id);
-  }
-  return id;
+export const postLikes = async (likes) => {
+  const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`, {
+    method: 'POST',
+    body: JSON.stringify(likes),
+    headers: {
+      'Content-type': 'application/json',
+    },
+  });
+  console.log(res)
+  return res;
 };
 
 export const getLikes = async (appId) => {
-  const response = await fetch(`${USER_DATA_API}apps/${appId}/likes`);
+  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`);
 
   try {
     const likes = await response.json();
@@ -42,7 +46,8 @@ export const getLikes = async (appId) => {
 };
 
 export const getComments = async (item_id) => {
-  const response = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments?item_id=${item_id}`);
+  console.log(item_id)
+  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${item_id}`);
   try {
     const comments = await response.json();
     return comments;
@@ -51,31 +56,14 @@ export const getComments = async (item_id) => {
   }
 };
 
-export const likeMeal = async ({ appId, mealId }) => {
-  const response = await post(`apps/${appId}/likes`, {
-    item_id: mealId,
-  });
-
-  return response;
-};
-
-export const getMealById = async (id) => {
-  const response = await fetch(`${MEAL_API}/lookup.php?i=${id}`);
-  const allMeals = await response.json();
-  return allMeals[0];
-};
-
-export const postComment = async (comment) => {
-  const res = await fetch(`${USER_DATA_API}apps/ZvZAdGleGXTZdcrqkd8w/comments`, {
+export const postComment = async (data) => {
+  const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments`, {
     method: 'POST',
-    body: JSON.stringify(comment),
+    body: JSON.stringify(data),
     headers: {
       'Content-type': 'application/json',
     },
   });
-<<<<<<< HEAD
-  console.log(res);
-=======
->>>>>>> 1a56fadb3930a600700fbfb1c0a3849232844394
+
   return res;
 };
