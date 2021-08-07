@@ -37,8 +37,6 @@ We have counters in all the interfaces that show:
 - The number of items (home).
 - The number of comments (comments popup).
 
-========
-
 ## Built With 
 
 - HTML/CSS
@@ -46,8 +44,6 @@ We have counters in all the interfaces that show:
 - Node.JS
 - Bootstrap
 - Jest
-
-========
 
 ## Getting Started
 
@@ -96,8 +92,6 @@ If you are non a technical person you can download the zip file.
 
 - Node.JS
 
-=======
-
 ## Author
 
 👤 **Makungong Collins Tatang**
@@ -112,25 +106,18 @@ If you are non a technical person you can download the zip file.
 - Twitter: [@elisha1k](https://twitter.com/Elisha1k)
 - LinkedIn: [Elisha Kyakopo](https://www.linkedin.com/in/elisha-kyakopo/)
 
-=======
-
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
 
-=======
-
 ## Show your support
 
 Give a ⭐️ if you like this project!
-
-=======
 
 ## Acknowledgments
 
 - Microverse for giving me this chance
 - The amazing code reviewers for making me improve every day :thumbsup:
-
-=======
+  
