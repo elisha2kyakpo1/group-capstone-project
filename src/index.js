@@ -8,7 +8,6 @@ import dspLikes from './likes.js';
 import dspComments from './comments.js';
 
 const popup = document.querySelector('.popup-form');
-const imgContainer = document.getElementById('img-container');
 const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
@@ -16,10 +15,6 @@ const commentsCount = document.getElementById('c-count');
 commentsCount.classList.add('counter-comment');
 const moviesCount = document.getElementById('movies-count');
 const spanMovie = document.createElement('span');
-const popImage = document.createElement('img');
-popImage.id = 'figure';
-popImage.classList.add('pop-img');
-imgContainer.appendChild(popImage);
 moviesCount.appendChild(spanMovie);
 
 closeBtn.addEventListener('click', (e) => {
