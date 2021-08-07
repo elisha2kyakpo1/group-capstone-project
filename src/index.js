@@ -2,7 +2,6 @@ import './style.css';
 import {
   postComment,
   postLikes,
-  createApp,
 } from './api.js';
 import newApi from './rapidApi.js';
 import dspLikes from './likes.js';
@@ -120,5 +119,4 @@ const display = async () => {
 
   return firstTitle;
 };
-createApp()
 display();
