@@ -1,5 +1,5 @@
 const USER_DATA_API = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/';
-const MY_APP_ID = 't1PxqBiZDtpf8oKXiWHv';
+const MY_APP_ID = 'z9HUEUucfTMzK1TCwlWe';
 const postData = async (url) => {
   const response = await fetch(`${USER_DATA_API}${url}`, {
     method: 'POST',
@@ -12,7 +12,7 @@ const postData = async (url) => {
   return response;
 };
 
-export const createApp = async () => {
+const createApp = async () => {
   let appId = localStorage.getItem('appId');
   if (!appId) {
     const response = await postData('apps/');
@@ -22,7 +22,7 @@ export const createApp = async () => {
   return appId;
 };
 
-export const postLikes = async (likes) => {
+const postLikes = async (likes) => {
   const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`, {
     method: 'POST',
     body: JSON.stringify(likes),
@@ -30,11 +30,10 @@ export const postLikes = async (likes) => {
       'Content-type': 'application/json',
     },
   });
-  console.log(res)
   return res;
 };
 
-export const getLikes = async (appId) => {
+const getLikes = async () => {
   const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/likes`);
 
   try {
@@ -45,9 +44,8 @@ export const getLikes = async (appId) => {
   }
 };
 
-export const getComments = async (item_id) => {
-  console.log(item_id)
-  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${item_id}`);
+const getComments = async (itemId) => {
+  const response = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments?item_id=${itemId}`);
   try {
     const comments = await response.json();
     return comments;
@@ -56,7 +54,7 @@ export const getComments = async (item_id) => {
   }
 };
 
-export const postComment = async (data) => {
+const postComment = async (data) => {
   const res = await fetch(`${USER_DATA_API}apps/${MY_APP_ID}/comments`, {
     method: 'POST',
     body: JSON.stringify(data),
@@ -66,4 +64,12 @@ export const postComment = async (data) => {
   });
 
   return res;
+};
+
+export {
+  postComment,
+  getComments,
+  getLikes,
+  createApp,
+  postLikes,
 };
