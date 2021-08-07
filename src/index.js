@@ -77,8 +77,7 @@ const display = async () => {
 
       const likes = { item_id: ele.id };
       postLikes(likes).then(() => {
-        // eslint-disable-next-line
-        document.getElementById(`l${ele.id}`).innerText = parseInt(e.target.value) + 1;
+        document.getElementById(`l${ele.id}`).innerText = parseInt(e.target.value, 10) + 1;
       });
     });
 
