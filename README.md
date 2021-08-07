@@ -4,7 +4,9 @@
 
 ![Project image](./src/assets/capstone.png)
 
-[Project video](./src/assets/zoom_3.mp4)
+## Video
+
+[Project video](https://youtu.be/Iw073XvknCg)
 
 The JavaScript capstone project is about building our own web application based on an external API. The webapp have 2 user interfaces:
 
