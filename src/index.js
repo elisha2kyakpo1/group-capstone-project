@@ -3,9 +3,9 @@ import {
   postComment,
   postLikes,
 } from './api';
-import newApi from './rapidApi';
-import dspLikes from './likes'
-import dspComments from './comments'
+import newApi from './rapidApi.js';
+import dspLikes from './likes.js';
+import dspComments from './comments.js';
 
 const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
@@ -27,13 +27,13 @@ overlay.addEventListener('click', (e) => {
   e.preventDefault();
   popup.style.display = 'none';
   overlay.classList.remove('active');
-})
+});
 
 const display = async () => {
   const firstTitle = await newApi();
 
-  let currentItemIndex = null
-  let currentItemId = null
+  let currentItemIndex = null;
+  let currentItemId = null;
 
   firstTitle.forEach((ele, index) => {
     const btnComment = document.createElement('button');
@@ -65,7 +65,7 @@ const display = async () => {
     imageDiv.appendChild(btnComment);
     title.textContent = ele.l;
     image.src = ele.i.imageUrl;
-    spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
+    spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`;
 
     const clearFields = () => {
       document.querySelector('#username').value = '';
@@ -74,17 +74,17 @@ const display = async () => {
 
     btnLike.addEventListener('click', (e) => {
       e.preventDefault();
-      const likes = { item_id: ele.id }
+      const likes = { item_id: ele.id };
       postLikes(likes);
     });
 
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
 
-      currentItemIndex = index
-      currentItemId = firstTitle[index].id
+      currentItemIndex = index;
+      currentItemId = firstTitle[index].id;
 
-      document.getElementById('figure').src = ele.i.imageUrl
+      document.getElementById('figure').src = ele.i.imageUrl;
       document.getElementById('title').innerHTML = ele.l;
       document.getElementById('description').innerHTML = ele.s;
       popup.style.display = 'block';
@@ -98,20 +98,20 @@ const display = async () => {
   });
 
   document.querySelector('.sub-comment').addEventListener('click', (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const commentObj = {
       item_id: currentItemId,
       username: document.querySelector('#username').value,
       comment: document.querySelector('#comment_text').value,
-    }
-    
-    postComment(commentObj).then(() => {
-      dspComments(firstTitle[currentItemIndex])
-    })
+    };
+
+  postComment(commentObj).then(() => {
+      dspComments(firstTitle[currentItemIndex]);
+    });
 
     clearFields();
-  })
+  });
 
   return firstTitle;
-}
+};
 display();
