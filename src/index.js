@@ -74,8 +74,11 @@ const display = async () => {
 
     btnLike.addEventListener('click', (e) => {
       e.preventDefault();
+
       const likes = { item_id: ele.id };
-      postLikes(likes);
+      postLikes(likes).then(() => {
+        document.getElementById(`l${ele.id}`).innerText = parseInt(e.target.value) + 1
+      })
     });
 
     btnComment.addEventListener('click', (e) => {
@@ -91,11 +94,9 @@ const display = async () => {
       overlay.classList.add('active');
       dspComments(firstTitle[index]);
     });
-
-    if (index === firstTitle.length - 1) {
-      dspLikes(firstTitle);
-    }
   });
+
+  dspLikes(firstTitle);
 
   document.querySelector('.sub-comment').addEventListener('click', (e) => {
     e.preventDefault();
