@@ -12,15 +12,11 @@ const popup = document.querySelector('.popup-form');
 const overlay = document.querySelector('.overlay');
 const closeBtn = document.querySelector('.close');
 const btnDiv = document.querySelector('.comments-div');
-const sendComment = document.querySelector('.sub-comment');
-// const commentDisplay = document.querySelector('.comments-display');
 const commentsCount = document.getElementById('c-count');
 commentsCount.classList.add('counter-comment');
 const moviesCount = document.getElementById('movies-count');
 const spanMovie = document.createElement('span');
 moviesCount.appendChild(spanMovie);
-// const allComment = document.createElement('ul');
-// commentDisplay.appendChild(allComment);
 
 closeBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -36,6 +32,10 @@ overlay.addEventListener('click', (e) => {
 
 const display = async () => {
   const firstTitle = await newApi();
+
+  let currentItemIndex = null
+  let currentItemId = null
+
   firstTitle.forEach((ele, index) => {
     const btnComment = document.createElement('button');
     const btnLike = document.createElement('button');
@@ -48,7 +48,6 @@ const display = async () => {
     const title = document.createElement('h4');
     const imageDiv = document.createElement('div');
     const likeCont = document.createElement('div');
-
     const likeDisplay = document.createElement('span');
     likeDisplay.id = 'l' + ele.id;
 
@@ -69,26 +68,10 @@ const display = async () => {
     image.src = ele.i.imageUrl;
     spanMovie.innerHTML = `(${Object.keys(ele.id).length - 1})`
 
-    if (index === firstTitle.length - 1) {
-      dspComments(firstTitle);
-    }
     const clearFields = () => {
       document.querySelector('#username').value = '';
       document.querySelector('#comment_text').value = '';
     };
-
-    sendComment.addEventListener('click', (e) => {
-      e.preventDefault();
-      const commentObj = {
-        item_id: ele.id,
-        username: document.querySelector('#username').value,
-        comment: document.querySelector('#comment_text').value,
-      }
-      if (commentObj.username !== '' && commentObj.comment !== '') {
-        postComment(commentObj);
-        clearFields();
-      }
-    });
 
     btnLike.addEventListener('click', (e) => {
       e.preventDefault();
@@ -98,19 +81,37 @@ const display = async () => {
 
     btnComment.addEventListener('click', (e) => {
       e.preventDefault();
+
+      currentItemIndex = index
+      currentItemId = firstTitle[index].id
+
       document.getElementById('figure').src = ele.i.imageUrl
       document.getElementById('title').innerHTML = ele.l;
       document.getElementById('description').innerHTML = ele.s;
       popup.style.display = 'block';
       overlay.classList.add('active');
+      dspComments(firstTitle[index]);
     });
 
     if (index === firstTitle.length - 1) {
       dspLikes(firstTitle);
     }
   });
+
+  document.querySelector('.sub-comment').addEventListener('click', (e) => {
+    e.preventDefault()
+    const commentObj = {
+      item_id: currentItemId,
+      username: document.querySelector('#username').value,
+      comment: document.querySelector('#comment_text').value,
+    }
+    
+    postComment(commentObj).then(() => {
+      dspComments(firstTitle[currentItemIndex])
+    })
+  })
+
   return firstTitle;
 }
-// createApp()
 display();
 

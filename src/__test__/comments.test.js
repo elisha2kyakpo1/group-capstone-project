@@ -1,6 +1,12 @@
-import { it } from "@jest/globals";
-import { dspComments } from "../__mocks__/comments";
+const { getCommentsCount } = require('../utills.js');
+const mockComments = [
+  {
+    item_id: 'txvcfrt',
+    username: 'Mwimwi',
+    comment: 'Some comment here',
+  },
+];
 
-it('returns a total number of comments by id of an item', async () => {
- await expect(dspComments('1236')).toBe(2);
+test('Should return total number of comments', () => {
+  expect(getCommentsCount(mockComments)).toBe(mockComments.length);
 });

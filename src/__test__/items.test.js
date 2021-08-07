@@ -1,14 +1,34 @@
-import { rapidApi } from '../rapidApi';
+import { display } from "../__mocks__/itemsCount";
 
 describe('Testing Asynchronous Code', () => {
-  const counterItems = async () => {
-    const getItems = await rapidApi();
-    getItems.forEach((element) => {
-      return Object.keys(element.id).length - 1;
-    });
-    return getItems;
-  }
+  const mockItems = [
+    {
+      item_id: 'txvcfrt',
+      username: 'Mwimwi',
+      comment: 'Some comment here',
+    },
+    {
+      item_id: 'txvcfrt',
+      username: 'Mwimwi',
+      comment: 'Some comment here',
+    },
+    {
+      item_id: 'txvcfrt',
+      username: 'Mwimwi',
+      comment: 'Some comment here',
+    },
+    {
+      item_id: 'txvcfrt',
+      username: 'Mwimwi',
+      comment: 'Some comment here',
+    },
+    {
+      item_id: 'txvcfrt',
+      username: 'Mwimwi',
+      comment: 'Some comment here',
+    },
+  ];
   it('test the count of all items', () => {
-    expect(counterItems()).toEqual(8);
+    expect(display(mockItems)).toBe(mockItems.length);
   });
 });
