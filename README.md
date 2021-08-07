@@ -2,6 +2,10 @@
 
 # JavaScript-capstone-project
 
+![Project image](./src/assets/capstone.png)
+
+[Project video](./src/assets/zoom_3.mp4)
+
 The JavaScript capstone project is about building our own web application based on an external API. The webapp have 2 user interfaces:
 
 - A home page showing a list of items that you can "like."
