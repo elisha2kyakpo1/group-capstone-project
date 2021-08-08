@@ -1,46 +1,112 @@
 body {
-  background-color:#f3f4f6;
+  background-color: #f3f4f6;
 }
 
 .nav,
 .content-cont,
-.inner-comments {
+.inner-comments,
+.comments-div,
+.like-div {
   justify-content: center;
   align-items: center;
 }
 
-.content-cont {
-  flex-wrap: wrap;
+.btn-nav {
+  font-size: 1.3rem;
+  font-weight: 500;
 }
 
-.reserve-form,
-.comments-form {
-  position: absolute;
-  top: 50px;
-  left: 10%;
-  right: 10%;
-  width: 80%;
-  height: 100%;
+.nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 80px;
+  background-color: gray;
+}
+
+.btn-save {
+  width: 50%;
+}
+
+.active {
+  background-color: rgb(0, 0, 0.5);
+  position: fixed;
+  opacity: 0.5;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.like-div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.like-div button {
+  border: none;
+  outline: none;
+  color: red;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.like-div button span {
+  color: #000;
+}
+
+.add-comment,
+.comment-count {
+  font-weight: bold;
+}
+
+.name-title {
+  font-weight: 500;
+}
+
+.popup-form {
+  display: none;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  width: 600px;
+  height: 80vh;
+  margin: auto;
   box-shadow: 2px 2px 5px black;
   background-color: #fff;
   padding: 10px 20px;
-  display: none;
   z-index: 500;
+  overflow-y: scroll;
 }
 
-img {
+.comments-div {
+  flex-wrap: wrap;
+  margin: 0 20px;
+  margin-bottom: 5%;
+}
+
+.img-div {
+  flex: 1;
+  margin-top: 2.5rem;
+}
+
+.img-div div {
+  width: 300px;
+}
+
+.close {
+  font-size: 3rem;
+  font-weight: 400;
+  color: black;
+}
+
+.image,
+.pop-img {
+  object-fit: cover;
   width: 100%;
-}
-
-.img1 {
-  margin: 1.2rem;
-  min-width: 20%;
-  min-height: 20%;
-}
-
-.container {
-  justify-content: space-around;
-  align-items: center;
+  height: 300px;
 }
 
 .form-control {
@@ -50,4 +116,13 @@ img {
 .form,
 .comments-rsvp {
   flex-direction: column;
+}
+
+footer {
+  background-color: #cfd9e0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1%;
 }
